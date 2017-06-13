@@ -9,6 +9,8 @@ router.post('/register', validateRegister, (req, res, next) => {
   let user = new User();
 
   user.username = req.body.username;
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
   user.email = req.body.email;
   user.setPassword(req.body.password);
 
@@ -39,7 +41,7 @@ router.post('/login', validateLogin, (req, res, next) => {
 
 router.post('/logout', (req, res, next) => {
   req.logout();
-  
+
   res.status(204).end();
 });
 
@@ -47,6 +49,8 @@ router.post('/logout', (req, res, next) => {
 function validateRegister (req, res, next) {
     req.checkBody('username', 'Username is required').notEmpty();
     req.checkBody('username', 'Username must be alphanumeric').isAlphanumeric();
+    req.checkBody('firstName' , 'FirstName is required').notEmpty();
+    req.checkBody('lastName' , 'LastName is required').notEmpty();
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not a valid email').isEmail();
     req.checkBody('password', 'Password is required').notEmpty();

@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 import * as passport from 'passport';
 import * as expressJWT from 'express-jwt';
 
-// Establish the express validation 
+// Establish the express validation
 let expressValidator = require('express-validator');
 
 // Import API/Routes
@@ -18,7 +18,8 @@ const app = express();
 const authenticate = expressJWT({secret: 'SecretKey'});
 
 // Establish Database Connection
-mongoose.connect('mongodb://admin:admin@ds064299.mlab.com:64299/ng-node-auth');
+mongoose.connect('mongodb://localhost:27017/test');
+
 
 // Configuring the application
 app.use(bodyParser.json());
